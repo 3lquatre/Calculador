@@ -44,16 +44,19 @@ export default {
         const hasExtClip = interaction.options.getBoolean('ext_pistol_clip');
 
         const prices = {
-            base_with_material: 0,  // Add base price WITH material (cheaper)
-            base_without_material: 0,  // Add base price WITHOUT material (more expensive)
-            suppressor: 2750,  // Add suppressor price
-            ext_pistol_clip: 2750  // Add extended clip price
-        };
+    base_with_material: 0,  // Add base price WITH material
+    base_without_material: 0,  // Add base price WITHOUT material
+    suppressor_with_material: 2750,  // Suppressor price WITH material (cheaper)
+    suppressor_without_material: 4500,  // Suppressor price WITHOUT material (more expensive)
+    ext_pistol_clip_with_material: 2750,  // Ext clip price WITH material (cheaper)
+    ext_pistol_clip_without_material: 4000  // Ext clip price WITHOUT material (more expensive)
+};
 
-        const basePrice = hasMaterial ? prices.base_with_material : prices.base_without_material;
-        const accessoryPrice = (hasSuppressor ? prices.suppressor : 2750) + (hasExtClip ? prices.ext_pistol_clip : 2750);
-        const kitPrice = basePrice + accessoryPrice;
-        const totalPrice = quantity * kitPrice;
+const basePrice = hasMaterial ? prices.base_with_material : prices.base_without_material;
+const suppressorPrice = hasSuppressor ? (hasMaterial ? prices.suppressor_with_material : prices.suppressor_without_material) : 0;
+const clipPrice = hasExtClip ? (hasMaterial ? prices.ext_pistol_clip_with_material : prices.ext_pistol_clip_without_material) : 0;
+const accessoryPrice = suppressorPrice + clipPrice;
+const kitPrice = basePrice + accessoryPrice;
 
         const accessories = [];
         accessories.push(hasMaterial ? '✓ Material' : '✗ No Material');
