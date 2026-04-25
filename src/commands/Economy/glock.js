@@ -50,7 +50,7 @@ export default {
             ext_pistol_clip: 2750,  // 
         };
 
-        const basePrice = hasMaterial ? prices.base_with_material 5500: prices.base_without_material 8500;
+        const basePrice = hasMaterial ? prices.base_with_material : prices.base_without_material ;
         const accessoryPrice = (hasSuppressor ? prices.suppressor : 2750) + (hasExtClip ? prices.ext_pistol_clip : 2750);
         const kitPrice = basePrice + accessoryPrice;
         const totalPrice = quantity * kitPrice;
