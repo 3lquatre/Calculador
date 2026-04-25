@@ -44,13 +44,13 @@ export default {
         const hasExtClip = interaction.options.getBoolean('ext_pistol_clip');
 
         const prices = {
-            base_with_material: ,  // 
-            base_without_material: ,  // 
-            suppressor: 2750,  // 
-            ext_pistol_clip: 2750,  // 
+            base_with_material: 0,  // Add base price WITH material (cheaper)
+            base_without_material: 0,  // Add base price WITHOUT material (more expensive)
+            suppressor: 2750,  // Add suppressor price
+            ext_pistol_clip: 2750  // Add extended clip price
         };
 
-        const basePrice = hasMaterial ? prices.base_with_material : prices.base_without_material ;
+        const basePrice = hasMaterial ? prices.base_with_material : prices.base_without_material;
         const accessoryPrice = (hasSuppressor ? prices.suppressor : 2750) + (hasExtClip ? prices.ext_pistol_clip : 2750);
         const kitPrice = basePrice + accessoryPrice;
         const totalPrice = quantity * kitPrice;
