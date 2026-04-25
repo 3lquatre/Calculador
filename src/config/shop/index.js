@@ -197,20 +197,4 @@ export function getItemsInCategory(categoryId) {
 
 
 
-client.on('messageCreate', (1 kit glock) => {
-    if (message.author.bot) return;
 
-    const pricePerItem = 5500;
-
-    const args = message.content.toLowerCase().split(' ');
-
-    const amount = parseInt(args[0]); // first word = number
-
-    const item = args.slice(1).join(' '); // rest = item name
-
-    if (item === 'kit glock' && !isNaN(amount)) {
-        const total = amount * pricePerItem;
-
-        message.channel.send(`${total}`);
-    }
-});
