@@ -44,31 +44,32 @@ export default {
         const hasExtClip = interaction.options.getBoolean('ext_pistol_clip');
 
         const prices = {
-    base_with_material: 0,  // Add base price WITH material
-    base_without_material: 0,  // Add base price WITHOUT material
-    suppressor_with_material: 2750,  // Suppressor price WITH material (cheaper)
-    suppressor_without_material: 4500,  // Suppressor price WITHOUT material (more expensive)
-    ext_pistol_clip_with_material: 2750,  // Ext clip price WITH material (cheaper)
-    ext_pistol_clip_without_material: 4000  // Ext clip price WITHOUT material (more expensive)
-};
+            base_with_material: 0,
+            base_without_material: 0,
+            suppressor_with_material: 2750,
+            suppressor_without_material: 4500,
+            ext_pistol_clip_with_material: 2750,
+            ext_pistol_clip_without_material: 4000
+        };
 
-const basePrice = hasMaterial ? prices.base_with_material : prices.base_without_material;
-const suppressorPrice = hasSuppressor ? (hasMaterial ? prices.suppressor_with_material : prices.suppressor_without_material) : 0;
-const clipPrice = hasExtClip ? (hasMaterial ? prices.ext_pistol_clip_with_material : prices.ext_pistol_clip_without_material) : 0;
-const accessoryPrice = suppressorPrice + clipPrice;
-const kitPrice = basePrice + accessoryPrice;
+        const basePrice = hasMaterial ? prices.base_with_material : prices.base_without_material;
+        const suppressorPrice = hasSuppressor ? (hasMaterial ? prices.suppressor_with_material : prices.suppressor_without_material) : 0;
+        const clipPrice = hasExtClip ? (hasMaterial ? prices.ext_pistol_clip_with_material : prices.ext_pistol_clip_without_material) : 0;
+        const accessoryPrice = suppressorPrice + clipPrice;
+        const kitPrice = basePrice + accessoryPrice;
+        const totalPrice = quantity * kitPrice;
 
         const accessories = [];
         accessories.push(hasMaterial ? '✓ Material' : '✗ No Material');
-        if (hasSuppressor) accessories.push('✓ Suppressor' : '✗ Suppressorl');
-        if (hasExtClip) accessories.push('✓ Ext. Pistol Clip' : '✗ Ext. Pistol Clip');
+        if (hasSuppressor) accessories.push('✓ Suppressor');
+        if (hasExtClip) accessories.push('✓ Ext. Pistol Clip');
 
         const embed = createEmbed({
             title: '🔫 Glock Kit Price',
             color: 'primary',
         })
             .addFields(
-                { name: 'Quantidade', value: `${quantity}`, inline: true },
+                { name: 'Quantity', value: `${quantity}`, inline: true },
                 { name: 'Base Price', value: `$${basePrice.toLocaleString()}`, inline: true },
                 { name: 'Accessories', value: accessories.join('\n'), inline: true },
                 { name: 'Kit Total', value: `$${kitPrice.toLocaleString()}`, inline: true },
