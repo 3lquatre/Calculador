@@ -544,6 +544,11 @@ export function getRandomColor() {
 
 export default botConfig;
 
+@client.command()
+  async def 1 kit glock(ctx):
+await ctx.send('5500') 
+
+
 
 
 
