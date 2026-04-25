@@ -44,10 +44,10 @@ export default {
         const hasExtClip = interaction.options.getBoolean('ext_pistol_clip');
 
         const prices = {
-            base_with_material: 0,  // 5500
-            base_without_material: 0,  // 8500
-            suppressor: 0,  // 2750
-            ext_pistol_clip: 0  // 2750
+            base_with_material: 5500,  // 
+            base_without_material: 8500,  // 
+            suppressor: 2750,  // 
+            ext_pistol_clip: 2750,  // 
         };
 
         const basePrice = hasMaterial ? prices.base_with_material : prices.base_without_material;
