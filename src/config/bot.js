@@ -542,11 +542,7 @@ export function getRandomColor() {
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
-export default botConfig;
-
-@client.command()
-  async def 1 kit glock(ctx):
-await ctx.send('5500') 
+export default botConfig; 
 
 
 
