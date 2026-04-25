@@ -60,15 +60,15 @@ const kitPrice = basePrice + accessoryPrice;
 
         const accessories = [];
         accessories.push(hasMaterial ? '✓ Material' : '✗ No Material');
-        if (hasSuppressor) accessories.push('✓ Suppressor');
-        if (hasExtClip) accessories.push('✓ Ext. Pistol Clip');
+        if (hasSuppressor) accessories.push('✓ Suppressor' : '✗ Suppressorl');
+        if (hasExtClip) accessories.push('✓ Ext. Pistol Clip' : '✗ Ext. Pistol Clip');
 
         const embed = createEmbed({
             title: '🔫 Glock Kit Price',
             color: 'primary',
         })
             .addFields(
-                { name: 'Quantity', value: `${quantity}`, inline: true },
+                { name: 'Quantidade', value: `${quantity}`, inline: true },
                 { name: 'Base Price', value: `$${basePrice.toLocaleString()}`, inline: true },
                 { name: 'Accessories', value: accessories.join('\n'), inline: true },
                 { name: 'Kit Total', value: `$${kitPrice.toLocaleString()}`, inline: true },
