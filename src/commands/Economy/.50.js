@@ -5,7 +5,7 @@ import { InteractionHelper } from '../../utils/interactionHelper.js';
 
 export default {
     data: new SlashCommandBuilder()
-        .setName('.50')
+        .setName('fifty')
         .setDescription('Calculate .50 kit prices')
         .addIntegerOption(option =>
             option
