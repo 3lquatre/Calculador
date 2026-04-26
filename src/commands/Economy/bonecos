@@ -1,1 +1,53 @@
+import { SlashCommandBuilder } from 'discord.js';
+import { createEmbed } from '../../utils/embeds.js';
+import { withErrorHandling, createError, ErrorTypes } from '../../utils/errorHandler.js';
+import { InteractionHelper } from '../../utils/interactionHelper.js';
 
+export default {
+    data: new SlashCommandBuilder()
+        .setName('bonecos')
+        .setDescription('Calculate Bonecos prices')
+        .addIntegerOption(option =>
+            option
+                .setName('quantity')
+                .setDescription('Number of bonecos')
+                .setRequired(true)
+                .setMinValue(1)
+                .setMaxValue(100)
+        )
+        .addBooleanOption(option =>
+            option
+                .setName('material')
+                .setDescription('Include material?')
+                .setRequired(true)
+        ),
+
+    execute: withErrorHandling(async (interaction, config, client) => {
+        const deferred = await InteractionHelper.safeDefer(interaction);
+        if (!deferred) return;
+
+        const quantity = interaction.options.getInteger('quantity');
+        const hasMaterial = interaction.options.getBoolean('material');
+
+        const prices = {
+            with_material: 500,
+            without_material: 700
+        };
+
+        const price = hasMaterial ? prices.with_material : prices.without_material;
+        const totalPrice = quantity * price;
+
+        const embed = createEmbed({
+            title: '🎯 Bonecos Price',
+            color: 'primary',
+        })
+            .addFields(
+                { name: 'Quantity', value: `${quantity}`, inline: true },
+                { name: 'Material', value: hasMaterial ? '✓ Yes' : '✗ No', inline: true },
+                { name: 'Unit Price', value: `$${price.toLocaleString()}`, inline: true },
+                { name: 'Grand Total', value: `$${totalPrice.toLocaleString()}`, inline: true }
+            );
+
+        await InteractionHelper.safeEditReply(interaction, { embeds: [embed] });
+    }, { command: 'bonecos' })
+};
