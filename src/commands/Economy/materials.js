@@ -280,11 +280,6 @@ export default {
                 { name: 'Total Carbono', value: `${totalCarbon}`, inline: true }
             );
 
-        const message = await InteractionHelper.safeEditReply(interaction, { embeds: [embed] });
+       await InteractionHelper.safeEditReply(interaction, { embeds: [embed] });
 
-        // Delete message after 30 minutes (1800000 milliseconds)
-        setTimeout(() => {
-            message?.delete().catch(() => {});
-        }, 1800000);
-    }, { command: 'materiais' })
-};
+// Don't delete interaction replies - they're managed by Discord
