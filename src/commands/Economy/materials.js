@@ -281,5 +281,7 @@ export default {
             );
 
        await InteractionHelper.safeEditReply(interaction, { embeds: [embed] });
+ }, { command: 'material' })
+};
 
 // Don't delete interaction replies - they're managed by Discord
