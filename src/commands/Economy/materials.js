@@ -280,6 +280,6 @@ export default {
                 { name: 'Total Carbono', value: `${totalCarbon}`, inline: true }
             );
 
-       await InteractionHelper.safeEditReply(interaction, { embeds: [embed] });
-
-// Don't delete interaction replies - they're managed by Discord
+        await InteractionHelper.safeEditReply(interaction, { embeds: [embed] });
+    })
+};
